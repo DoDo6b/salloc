@@ -60,10 +60,14 @@ void stackDump_ (const char* callerFile, unsigned int callerLine, const char* na
 #define chunkDump(...) chunkDump_ (__FILE__, __LINE__, __VA_ARGS__)
 #define stackDump(stack, ...) stackDump_ (__FILE__, __LINE__, #stack, stack, __VA_ARGS__)
 
+#ifndef NDEBUG
+
 uint64_t chunkVerify_ (const char* callerFile, unsigned int callerLine, const Stack* stack, const ChunkHeader* header);
 uint64_t stackVerify_ (const char* callerFile, unsigned int callerLine, const Stack* stack);
 #define chunkVerify(...) chunkVerify_ (__FILE__, __LINE__, __VA_ARGS__)
 #define stackVerify(...) stackVerify_ (__FILE__, __LINE__, __VA_ARGS__)
+
+#endif
 
 
 #endif

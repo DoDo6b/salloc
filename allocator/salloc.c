@@ -23,6 +23,8 @@ Stack stackInit (size_t size)
     buf.top = buf.stack;
     buf.allocated = 0;
     IF_DBG(buf.tailCanary = STACKTCANARY;)
+
+    IF_DBG (log_string ("<grn>initilized arena with %zu word(s)<dft>\n", buf.wsize);)
     return buf;
 }
 
@@ -378,7 +380,7 @@ void chunkDump_ (const char* callerFile, unsigned int callerLine, const Stack* s
 
     #else
 
-    if (chunk == NULL)
+    if (header == NULL)
     {
         log_string ("%s:%d: %s: <b><red>verification error:<dft> received a NULL</b>\n", callerFile, callerLine, __func__);
         IF_SAFE(exit(EXIT_FAILURE);)
